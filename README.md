@@ -89,22 +89,22 @@ Replace the `weights.pth` with the path to your trained model. When it runs, you
 
 **Left Index: 25, Right Index: 50**
 
-| ![img](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png "Index 25") | ![](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png "Index 50")![Denoising Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true) |
-| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|  ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 
 ### 7.2. Image Reconstruction
 
-| ![img](documentation\img\idx_25_reconstructed.png "Index 25 Reconstruction") | ![](documentation\img\idx_50_reconstructed.png "Index 50 Reconstruction") |
-| ----------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| ![Reconstruction Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25_reconstructed.png?raw=true "Index 25 Reconstruction") | ![Reconstruction Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50_reconstructed.png?raw=true "Index 50 Reconstruction") |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### 7.3. Image Denoising
 
-| ![img](documentation\img\idx_25_denoise.png "Index 25 Denoising") | ![](documentation\img\idx_50_denoise.png "Index 50 Denoising") |
-| ------------------------------------------------------------ | --------------------------------------------------------- |
+| ![Denoising Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25_denoise.png?raw=true "Index 25 Denoising") | ![Denoising Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50_denoise.png?raw=true "Index 50 Denoising") |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### 7.4. Image Interpolation
 
-![](documentation\img\interpolate.png "Interpolation")
+![Interpolation Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/interpolate.png?raw=true "Interpolation")
 
 ## 8. Notes
 
