@@ -80,7 +80,8 @@ Arguments:
 After training, use `main.py` to test reconstruction, denoising, and interpolation:
 
 ```
-python main.py -l weights.pth
+cd mlp_autoencoder/src
+python main.py -l model/weights.pth
 ```
 
 Replace the `weights.pth` with the path to your trained model. When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view images using the `visualize_dataset.py` script.
