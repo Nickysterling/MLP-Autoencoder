@@ -38,24 +38,26 @@ Implemented in `model/model_arch.py`:
 
 ## 4. Installation
 
-1. **Clone the repository**
+**1. Clone the repository**
 
-   ```
-   git clone https://github.com/Nickysterling/mlp_autoencoder.git
-   cd mlp_autoencoder/src
-   ```
-2. **Create a virtual environment**
+```
+git clone https://github.com/Nickysterling/mlp_autoencoder.git
+cd mlp_autoencoder/src
+```
 
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Mac/Linux
-   venv\Scripts\activate     # On Windows
-   ```
+**2. Create a virtual environment**
+
+```
+python -m venv venv
+source venv/bin/activate  # On Mac/Linux
+venv\Scripts\activate     # On Windows
+```
+
 3. **Install dependencies**
 
-   ```
-   pip install -r requirements.txt
-   ```
+```
+pip install -r requirements.txt
+```
 
 ## 5. Training
 
@@ -89,8 +91,8 @@ Replace the `weights.pth` with the path to your trained model. When it runs, you
 
 **Left Index: 25, Right Index: 50**
 
-|  ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+|  ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![img](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png "Index 50")![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ### 7.2. Image Reconstruction
 
