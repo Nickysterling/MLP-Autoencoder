@@ -11,8 +11,6 @@ This project implements a **fully-connected (MLP) autoencoder** for the MNIST ha
 
 The project is written in **PyTorch** and is designed to be modular and easy to extend.
 
----
-
 ## 2. Autoencoder Architecture
 
 Implemented in `model/model_arch.py`:
@@ -23,8 +21,6 @@ Implemented in `model/model_arch.py`:
 - Activation functions:
   - **ReLU** in hidden layers
   - **Sigmoid** in output layer
-
----
 
 ## 3. Project Structure
 
@@ -39,8 +35,6 @@ Implemented in `model/model_arch.py`:
 ├── visualize_dataset.py # Displays MNIST dataset samples
 └── data/ # MNIST dataset (downloaded automatically)
 ```
-
----
 
 ## 4. Installation
 
@@ -63,8 +57,6 @@ Implemented in `model/model_arch.py`:
    pip install -r requirements.txt
    ```
 
----
-
 ## 5. Training
 
 Run `train.py` to train the autoencoder on MNIST:
@@ -81,8 +73,6 @@ Arguments:
 * `-b` : Batch size (default: 256)
 * `-p` : Path to save training loss plot (`.png`)
 
----
-
 ## 6. Testing
 
 After training, use `main.py` to test reconstruction, denoising, and interpolation:
@@ -93,16 +83,14 @@ python main.py -l weights.pth
 
 Replace the `weights.pth` with the path to your trained model. When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view images using the `visualize_dataset.py` script.
 
----
-
 ## 7. Example Outputs
 
 ### 7.1. Sample Images
 
 **Left Index: 25, Right Index: 50**
 
-| ![](documentation\img\idx_25.png "Index 25") | ![](documentation\img\idx_50.png "Index 50") |
-| --------------------------------------- | --------------------------------------- |
+| ![img](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png "Index 25") | ![](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png "Index 50")![Denoising Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true) |
+| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### 7.2. Image Reconstruction
 
@@ -117,8 +105,6 @@ Replace the `weights.pth` with the path to your trained model. When it runs, you
 ### 7.4. Image Interpolation
 
 ![](documentation\img\interpolate.png "Interpolation")
-
----
 
 ## 8. Notes
 
