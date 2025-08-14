@@ -91,8 +91,8 @@ Replace the `weights.pth` with the path to your trained model. When it runs, you
 
 **Left Index: 25, Right Index: 50**
 
-|  ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![img](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png "Index 50")![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|  ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 
 ### 7.2. Image Reconstruction
 
