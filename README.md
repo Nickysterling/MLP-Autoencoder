@@ -41,8 +41,8 @@ Implemented in `model/model_arch.py`:
 **1. Clone the repository**
 
 ```
-git clone https://github.com/Nickysterling/mlp_autoencoder.git
-cd mlp_autoencoder/src
+git clone https://github.com/Nickysterling/MLP-Autoencoder.git
+cd MLP-Autoencoder/src
 ```
 
 **2. Create a virtual environment**
@@ -53,7 +53,24 @@ source venv/bin/activate  # On Mac/Linux
 venv\Scripts\activate     # On Windows
 ```
 
-**3. Install dependencies**
+**3. Install dependencies (GPU Users)**
+
+For GPU users with CUDA 12.6:
+
+```
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu126
+```
+
+**4.** **Install dependencies (CPU Users**)
+
+For CPU users or if you encounter errors, replace `torch` and `torchvision` in `requirements.txt` with CPU wheels:
+
+```
+torch==2.8.0+cpu
+torchvision==0.23.0+cpu
+```
+
+Then install:
 
 ```
 pip install -r requirements.txt
@@ -64,6 +81,7 @@ pip install -r requirements.txt
 Run `train.py` to train the autoencoder on MNIST:
 
 ```
+cd MLP-Autoencoder/src/model_training
 python train.py -s weights.pth -z 32 -e 30 -b 256 -p loss_plot.png
 ```
 
@@ -80,11 +98,11 @@ Arguments:
 After training, use `main.py` to test reconstruction, denoising, and interpolation:
 
 ```
-cd mlp_autoencoder/src
+cd MLP-Autoencoder/src
 python main.py -l model/weights.pth
 ```
 
-Replace the `weights.pth` with the path to your trained model. When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view images using the `visualize_dataset.py` script.
+Replace the `weights.pth` with the name of your trained model. When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view images using the `visualize_dataset.py` script.
 
 ## 7. Example Outputs
 
@@ -92,8 +110,8 @@ Replace the `weights.pth` with the path to your trained model. When it runs, you
 
 **Left Index: 25, Right Index: 50**
 
-|  ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 
 ### 7.2. Image Reconstruction
 
