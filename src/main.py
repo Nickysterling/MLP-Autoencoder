@@ -21,7 +21,7 @@ def main():
 
     # Training data
     train_transform = transforms.Compose([transforms.ToTensor()])
-    train_set = MNIST('./data/mnist', train=True, download=True, transform=train_transform)
+    train_set = MNIST('../data/mnist', train=True, download=True, transform=train_transform)
 
     # Load the model
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

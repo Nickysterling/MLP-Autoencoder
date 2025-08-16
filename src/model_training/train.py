@@ -15,7 +15,8 @@ from torchsummary import summary
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # folder of train.py
 SRC_DIR = os.path.abspath(os.path.join(BASE_DIR, '..'))  # go up to src/
-DATA_DIR = os.path.join(SRC_DIR, 'data', 'mnist')       # src/data/mnist
+PROJ_DIR = os.path.abspath(os.path.join(SRC_DIR, '..'))  # go up one more level
+DATA_DIR = os.path.join(PROJ_DIR, 'data', 'mnist')
 sys.path.append(SRC_DIR)
 
 from model.model_arch import autoencoder

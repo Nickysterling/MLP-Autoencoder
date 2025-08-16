@@ -13,7 +13,7 @@ The project is written in **PyTorch** and is designed to be modular and easy to 
 
 ## 2. Autoencoder Architecture
 
-Implemented in `model/model_arch.py`:
+Implemented in `src/model/model_arch.py`:
 
 - Input layer: `784` units (flattened 28×28 MNIST images)
 - Bottleneck layer: configurable size (default `8`)
@@ -25,15 +25,21 @@ Implemented in `model/model_arch.py`:
 ## 3. Project Structure
 
 ```
-├── model/
-│ └── model_arch.py # Autoencoder model definition
-├── train.py # Training loop and CLI arguments
-├── main.py # Loads model and runs image tasks
-├── img_reconstruct.py # Reconstructs and displays an image
-├── img_denoise.py # Denoises a noisy MNIST image
-├── img_interpolate.py # Interpolates between two MNIST digits
-├── visualize_dataset.py # Displays MNIST dataset samples
-└── data/ # MNIST dataset (downloaded automatically)
+├── data/
+├── documentation/
+├── src/
+│ └── model/
+│ └── model_training/
+│   └── train.py
+│   └── train.txt
+│ └── img_denoise.py
+│ └── img_interpolate.py
+│ └── img_reconstruct.py
+│ └── main.py
+│ └── visualize_dataset.py
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
 
 ## 4. Installation
@@ -42,7 +48,7 @@ Implemented in `model/model_arch.py`:
 
 ```
 git clone https://github.com/Nickysterling/MLP-Autoencoder.git
-cd MLP-Autoencoder/src
+cd MLP-Autoencoder
 ```
 
 **2. Create a virtual environment**
@@ -95,14 +101,29 @@ Arguments:
 
 ## 6. Testing
 
-After training, use `main.py` to test reconstruction, denoising, and interpolation:
+Once training is finished, you can test the autoencoder for **reconstruction, denoising, and interpolation** using `main.py`.
+
+**1. Navigate to the `src/` folder**
 
 ```
 cd MLP-Autoencoder/src
-python main.py -l model/weights.pth
 ```
 
-Replace the `weights.pth` with the name of your trained model. When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view images using the `visualize_dataset.py` script.
+**2. Run `main.py` and provide your trained model weights**
+
+If you want to use the example weights provided in the repo use this command:
+
+```
+python main.py -l model/model_weights.pth
+```
+
+If you trained your own model with `train.py`, use this command and replace `weights.pth` with the name of your saved file:
+
+```
+python main.py -l model_training/model_weights/weights.pth
+```
+
+When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view individual images using the `visualize_dataset.py` script.
 
 ## 7. Example Outputs
 
