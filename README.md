@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-This project implements a **fully-connected (MLP) autoencoder** for the MNIST handwritten digits dataset.The model learns to compress (encode) and reconstruct (decode) digit images, and includes interactive scripts for:
+This project implements a **fully-connected (MLP) autoencoder** for the MNIST handwritten digits dataset. The model learns to compress (encode) and reconstruct (decode) digit images, and includes interactive scripts for:
 
 - **Dataset Visualization** – preview MNIST samples.
 - **Image Reconstruction** – view original and reconstructed digits.
