@@ -1,8 +1,12 @@
 # MNIST Autoencoder with PyTorch
 
+A PyTorch MLP autoencoder that compresses and reconstructs handwritten digits, demonstrating representation learning and latent space exploration.
+
 ## 1. Overview
 
-This project implements a **fully-connected (MLP) autoencoder** for the MNIST handwritten digits dataset. The model learns to compress (encode) and reconstruct (decode) digit images, and includes interactive scripts for:
+This project implements a fully-connected (MLP) autoencoder for the MNIST handwritten digits dataset. The model learns to compress (encode) and reconstruct (decode) images of handwritten digits. 
+
+It includes interactive scripts for exploring different tasks:
 
 - **Dataset Visualization** – preview MNIST samples.
 - **Image Reconstruction** – view original and reconstructed digits.
@@ -11,7 +15,15 @@ This project implements a **fully-connected (MLP) autoencoder** for the MNIST ha
 
 The project is written in **PyTorch** and is designed to be modular and easy to extend.
 
-## 2. Autoencoder Architecture
+## 2. Key Features
+
+* Fully-connected (MLP) autoencoder with configurable bottleneck size.
+* Interactive Python scripts for visualization, reconstruction, denoising, and interpolation.
+* Designed to run on CPU or GPU.
+* Modular architecture for easy adaptation to other datasets.
+* Written in PyTorch, showcasing deep learning fundamentals and good coding practices.
+
+## 3. Autoencoder Architecture
 
 Implemented in `src/model/model_arch.py`:
 
@@ -22,7 +34,7 @@ Implemented in `src/model/model_arch.py`:
   - **ReLU** in hidden layers
   - **Sigmoid** in output layer
 
-## 3. Project Structure
+## 4. Project Structure
 
 ```
 ├── data/
@@ -42,7 +54,7 @@ Implemented in `src/model/model_arch.py`:
 └── requirements.txt
 ```
 
-## 4. Installation
+## 5. Installation
 
 **1. Clone the repository**
 
@@ -82,7 +94,7 @@ Then install:
 pip install -r requirements.txt
 ```
 
-## 5. Training
+## 6. Training Instructions
 
 Run `train.py` to train the autoencoder on MNIST:
 
@@ -99,7 +111,7 @@ Arguments:
 * `-b` : Batch size (default: 256)
 * `-p` : Path to save training loss plot (`.png`)
 
-## 6. Testing
+## 7. Usage Instructions
 
 Once training is finished, you can test the autoencoder for **reconstruction, denoising, and interpolation** using `main.py`.
 
@@ -125,30 +137,43 @@ python main.py -l model_training/model_weights/weights.pth
 
 When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view individual images using the `visualize_dataset.py` script.
 
-## 7. Example Outputs
+## 8. Example Outputs
 
-### 7.1. Sample Images
+### 8.1. Sample Images
 
 **Left Index: 25, Right Index: 50**
 
 | ![Index 25](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25.png?raw=true "Index 25") | ![Index 50](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50.png?raw=true "Index 50") |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 
-### 7.2. Image Reconstruction
+### 8.2. Image Reconstruction
 
 | ![Reconstruction Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25_reconstructed.png?raw=true "Index 25 Reconstruction") | ![Reconstruction Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50_reconstructed.png?raw=true "Index 50 Reconstruction") |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-### 7.3. Image Denoising
+### 8.3. Image Denoising
 
 | ![Denoising Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_25_denoise.png?raw=true "Index 25 Denoising") | ![Denoising Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/idx_50_denoise.png?raw=true "Index 50 Denoising") |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 
-### 7.4. Image Interpolation
+### 8.4. Image Interpolation
 
 ![Interpolation Example](https://github.com/Nickysterling/mlp_autoencoder/blob/main/documentation/img/interpolate.png?raw=true "Interpolation")
 
-## 8. Notes
+## 9. Skills and Technologies
+
+**Languages & Libraries**
+
+* Python, NumPy, Matplotlib
+* PyTorch (MLP autoencoders, training loops, GPU support)
+
+**Machine Learning / Deep Learning Concepts**
+
+* Autoencoders (encoding, decoding, bottleneck representation)
+* Representation learning & latent space exploration
+* Image reconstruction, denoising, interpolation
+
+## 10. Notes
 
 * The model can run on **CPU** or **GPU** (if available).
 * Latent space size (`N_bottleneck`) affects compression and reconstruction quality.
