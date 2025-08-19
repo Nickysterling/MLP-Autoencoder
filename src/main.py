@@ -5,8 +5,8 @@ import sys
 import torch
 from torchvision.datasets import MNIST
 import torchvision.transforms as transforms
-from src.model.model_arch import autoencoder
 
+from src.model.model_arch import autoencoder
 from src.operation import img_reconstruct
 from src.operation import img_denoise
 from src.operation import img_interpolate
@@ -52,4 +52,4 @@ def main():
     return 0
 
 if __name__ == '__main__':
-    sys.exit(main())
+    main()
