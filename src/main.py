@@ -1,7 +1,7 @@
 # main.py
 
 import argparse
-import sys
+
 import torch
 from torchvision.datasets import MNIST
 import torchvision.transforms as transforms
