@@ -2,7 +2,6 @@
 
 import torch
 import matplotlib.pyplot as plt
-import numpy as np
 
 def interpolate_images(model, dataset, device, n_steps=8):
     # Get user input for the two image indices

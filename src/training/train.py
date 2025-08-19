@@ -1,9 +1,9 @@
 # train.py
 
 import os
-import sys
 import datetime
 import argparse
+
 import matplotlib.pyplot as plt
 
 import torch
@@ -13,30 +13,41 @@ import torchvision.transforms as transforms
 from torchvision.datasets import MNIST
 from torchsummary import summary
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # folder of train.py
-SRC_DIR = os.path.abspath(os.path.join(BASE_DIR, '..'))  # go up to src/
-PROJ_DIR = os.path.abspath(os.path.join(SRC_DIR, '..'))  # go up one more level
-DATA_DIR = os.path.join(PROJ_DIR, 'data', 'mnist')
-sys.path.append(SRC_DIR)
-
-from model.model_arch import autoencoder
+from src.model.model_arch import autoencoder
+from src.utils import file_paths
 
 # ---------------------------------------------------
-# Default training parameters
+# Default configuration
 # ---------------------------------------------------
-DEFAULT_WEIGHTS_DIR = os.path.join(BASE_DIR, 'model_weights')
-DEFAULT_PLOTS_DIR = os.path.join(BASE_DIR, 'loss_plots')
-os.makedirs(DEFAULT_WEIGHTS_DIR, exist_ok=True)
-os.makedirs(DEFAULT_PLOTS_DIR, exist_ok=True)
+paths = file_paths()
 
-DEFAULT_SAVE_FILE = os.path.join(DEFAULT_WEIGHTS_DIR, 'weights.pth')
-DEFAULT_PLOT_FILE = os.path.join(DEFAULT_PLOTS_DIR, 'loss_plot.png')
+DATA_DIR = paths["DATA_DIR"]
+MODEL_DIR = paths["MODEL_DIR"]
+PLOT_DIR = paths["PLOT_DIR"]
+
+DEFAULT_WEIGHTS_DIR = MODEL_DIR
+DEFAULT_PLOTS_DIR = PLOT_DIR
+
 DEFAULT_EPOCHS = 30
 DEFAULT_BATCH_SIZE = 256
 DEFAULT_BOTTLENECK_SIZE = 32
 
+
+# ------------------------------
+# Utility Functions
+# ------------------------------
+def init_weights(m):
+    """Initialize weights for Linear layers using Xavier uniform."""
+    if isinstance(m, nn.Linear):
+        torch.nn.init.xavier_uniform_(m.weight)
+        m.bias.data.fill_(0.01)
+
+
+# ------------------------------
+# Training Loop
+# ------------------------------
 def train(n_epochs, optimizer, model, loss_fn, train_loader, scheduler, device, save_path=None, plot_file=None):
-    print('Starting training...')
+    print('Starting training...\n')
     model.train()
     losses_train = []
 
@@ -66,12 +77,12 @@ def train(n_epochs, optimizer, model, loss_fn, train_loader, scheduler, device, 
         epoch_loss = loss_train / len(train_loader)
         losses_train.append(epoch_loss)
 
-        print(f"{datetime.datetime.now()} - Training loss: {epoch_loss:.6f}")
+        print(f"{datetime.datetime.now().strftime("%I:%M:%S %p")} - Training loss: {epoch_loss:.6f}")
 
         # Save model after each epoch
         if save_path:
             torch.save(model.state_dict(), save_path)
-            print(f"Model saved to {save_path}")
+            print(f"Model saved to: {save_path}")
 
         # Save plot of loss
         if plot_file:
@@ -82,39 +93,40 @@ def train(n_epochs, optimizer, model, loss_fn, train_loader, scheduler, device, 
             plt.legend()
             plt.grid(True)
             plt.savefig(plot_file)
-            print(f"Loss plot saved to {plot_file}")
+            print(f"Plot saved to: {plot_file}\n")
 
 
-def init_weights(m):
-    """Initialize weights for Linear layers using Xavier uniform."""
-    if isinstance(m, nn.Linear):
-        torch.nn.init.xavier_uniform_(m.weight)
-        m.bias.data.fill_(0.01)
-
-
-def main():
+# ------------------------------
+# Command-line Argument Parsing
+# ------------------------------
+def parse_args():
     # CLI argument parser
     parser = argparse.ArgumentParser(description="Train an MNIST Autoencoder")
-    parser.add_argument('-s', type=str, help='Save file name (default: weights.pth)')
-    parser.add_argument('-z', type=int, help='Bottleneck size (default: 32)')
-    parser.add_argument('-e', type=int, help='Number of epochs (default: 30)')
-    parser.add_argument('-b', type=int, help='Batch size (default: 256)')
-    parser.add_argument('-p', type=str, help='Loss plot output file name (default: plot.png)')
-    args = parser.parse_args()
 
-    # Use args or defaults
-    save_file = os.path.join(DEFAULT_WEIGHTS_DIR, args.s) if args.s else DEFAULT_SAVE_FILE
-    bottleneck_size = args.z if args.z else DEFAULT_BOTTLENECK_SIZE
-    n_epochs = args.e if args.e else DEFAULT_EPOCHS
-    batch_size = args.b if args.b else DEFAULT_BATCH_SIZE
-    plot_file = os.path.join(DEFAULT_PLOTS_DIR, args.p) if args.p else DEFAULT_PLOT_FILE
+    parser.add_argument('-e', type=int, default=DEFAULT_EPOCHS, help='Number of epochs (default: 30)')
+    parser.add_argument('-b', type=int, default=DEFAULT_BATCH_SIZE, help='Batch size (default: 256)')
+    parser.add_argument('-z', type=int, default=DEFAULT_BOTTLENECK_SIZE, help='Bottleneck size (default: 32)')
+
+    return parser.parse_args()
+
+
+# ------------------------------
+# Main
+# ------------------------------
+def main():
+    # Parse command line arguments
+    args = parse_args()
+
+    save_file = os.path.join(DEFAULT_WEIGHTS_DIR, f'weights_E{args.e}_B{args.b}_BN{args.z}.pth')
+    plot_file = os.path.join(DEFAULT_PLOTS_DIR, f'loss_E{args.e}_B{args.b}_BN{args.z}.png')    
 
     # Display config
-    print(f"Bottleneck size: {bottleneck_size}")
-    print(f"Epochs: {n_epochs}")
-    print(f"Batch size: {batch_size}")
-    print(f"Model save path: {save_file}")
-    print(f"Plot file: {plot_file}")
+    print(f"\033[1mRunning main with the following parameters:\033[0m")
+    print(f"Epochs: {args.e}")
+    print(f"Batch size: {args.b}")
+    print(f"Bottleneck size: {args.z}\n")
+    print(f"Save path: {save_file}")
+    print(f"Plot file: {plot_file}\n")
 
     # Device selection
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -122,7 +134,7 @@ def main():
 
     # Model initialization
     N_input = 28 * 28
-    model = autoencoder(N_input=N_input, N_bottleneck=bottleneck_size, N_output=N_input)
+    model = autoencoder(N_input=N_input, N_bottleneck=args.z, N_output=N_input)
     model.to(device)
     model.apply(init_weights)
     summary(model, model.input_shape)
@@ -130,7 +142,7 @@ def main():
     # Data loaders
     transform = transforms.ToTensor()
     train_set = MNIST(DATA_DIR, train=True, download=True, transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True)
+    train_loader = torch.utils.data.DataLoader(train_set, batch_size=args.b, shuffle=True)
 
     # Optimizer, scheduler, loss
     optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
@@ -139,7 +151,7 @@ def main():
 
     # Train the model
     train(
-        n_epochs=n_epochs,
+        n_epochs=args.e,
         optimizer=optimizer,
         model=model,
         loss_fn=loss_fn,

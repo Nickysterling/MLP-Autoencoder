@@ -2,7 +2,6 @@
 
 import torch
 import matplotlib.pyplot as plt
-import numpy as np
 
 def denoise_image(model, dataset, device):
     

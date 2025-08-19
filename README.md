@@ -4,7 +4,7 @@ A PyTorch MLP autoencoder that compresses and reconstructs handwritten digits, d
 
 ## 1. Overview
 
-This project implements a fully-connected (MLP) autoencoder for the MNIST handwritten digits dataset. The model learns to compress (encode) and reconstruct (decode) images of handwritten digits. 
+This project implements a fully-connected (MLP) autoencoder for the MNIST handwritten digits dataset. The model learns to compress (encode) and reconstruct (decode) images of handwritten digits.
 
 It includes interactive scripts for exploring different tasks:
 
@@ -37,17 +37,21 @@ Implemented in `src/model/model_arch.py`:
 ## 4. Project Structure
 
 ```
+├── archive/
 ├── data/
 ├── documentation/
+├── outputs/
 ├── src/
 │ └── model/
-│ └── model_training/
+│   └── model_arch.py
+│ └── operation/
+│   └── img_denoise.py
+│   └── img_interpolate.py
+│   └── img_reconstruct.py
+│ └── training/
 │   └── train.py
-│   └── train.txt
-│ └── img_denoise.py
-│ └── img_interpolate.py
-│ └── img_reconstruct.py
 │ └── main.py
+│ └── utils.py
 │ └── visualize_dataset.py
 ├── .gitignore
 ├── README.md
@@ -99,26 +103,24 @@ pip install -r requirements.txt
 Run `train.py` to train the autoencoder on MNIST:
 
 ```
-cd MLP-Autoencoder/src/model_training
-python train.py -s weights.pth -z 32 -e 30 -b 256 -p loss_plot.png
+cd MLP-Autoencoder
+python -m src.training.train -e 30 -b 256 -z 32 
 ```
 
 Arguments:
 
-* `-s` : Path to save model weights (`.pth`)
-* `-z` : Bottleneck size (default: 32)
 * `-e` : Number of training epochs (default: 30)
 * `-b` : Batch size (default: 256)
-* `-p` : Path to save training loss plot (`.png`)
+* `-z` : Bottleneck size (default: 32)
 
 ## 7. Usage Instructions
 
-Once training is finished, you can test the autoencoder for **reconstruction, denoising, and interpolation** using `main.py`.
+Once training is finished, you can test the autoencoder using `main.py`.
 
-**1. Navigate to the `src/` folder**
+**1. Navigate to the project root directory**
 
 ```
-cd MLP-Autoencoder/src
+cd MLP-Autoencoder
 ```
 
 **2. Run `main.py` and provide your trained model weights**
@@ -126,16 +128,20 @@ cd MLP-Autoencoder/src
 If you want to use the example weights provided in the repo use this command:
 
 ```
-python main.py -l model/model_weights.pth
+python -m src.main -w archive\model_weights\model_weights.pth
 ```
 
 If you trained your own model with `train.py`, use this command and replace `weights.pth` with the name of your saved file:
 
 ```
-python main.py -l model_training/model_weights/weights.pth
+python -m src.main -w outputs\model_weights\model_weights.pth
 ```
 
 When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view individual images using the `visualize_dataset.py` script.
+
+```
+python -m src.visualize_dataset
+```
 
 ## 8. Example Outputs
 
