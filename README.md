@@ -21,7 +21,6 @@ The project is written in **PyTorch** and is designed to be modular and easy to 
 * Interactive Python scripts for visualization, reconstruction, denoising, and interpolation.
 * Designed to run on CPU or GPU.
 * Modular architecture for easy adaptation to other datasets.
-* Written in PyTorch, showcasing deep learning fundamentals and good coding practices.
 
 ## 3. Autoencoder Architecture
 
