@@ -8,10 +8,10 @@ This project implements a fully-connected (MLP) autoencoder for the MNIST handwr
 
 It includes interactive scripts for exploring different tasks:
 
-- **Dataset Visualization** – preview MNIST samples.
-- **Image Reconstruction** – view original and reconstructed digits.
-- **Image Denoising** – remove Gaussian noise from images.
-- **Image Interpolation** – smoothly transition between two different digits in latent space.
+- **Dataset Visualization:** Preview MNIST samples.
+- **Image Reconstruction:** View original and reconstructed digits.
+- **Image Denoising:** Remove Gaussian noise from images.
+- **Image Interpolation:** Smoothly transition between two different digits in latent space.
 
 The project is written in **PyTorch** and is designed to be modular and easy to extend.
 
