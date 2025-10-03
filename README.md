@@ -97,6 +97,8 @@ Then install:
 pip install -r requirements.txt
 ```
 
+> **Note:** All file paths in this documentation use forward slashes (`/`) for cross-platform compatibility. This works on both Windows and Unix-like systems.
+
 ## 6. Training Instructions
 
 Run `train.py` to train the autoencoder on MNIST:
@@ -127,13 +129,13 @@ cd MLP-Autoencoder
 If you want to use the example weights provided in the repo use this command:
 
 ```
-python -m src.main -w archive\model_weights\model_weights.pth
+python -m src.main -w archive/model_weights/model_weights.pth
 ```
 
 If you trained your own model with `train.py`, use this command and replace `weights.pth` with the name of your saved file:
 
 ```
-python -m src.main -w outputs\model_weights\model_weights.pth
+python -m src.main -w outputs/model_weights/model_weights.pth
 ```
 
 When it runs, you will be prompted to select MNIST image indices for each task. Each index corresponds to an image in the MNIST dataset. You can view individual images using the `visualize_dataset.py` script.
